@@ -15,6 +15,12 @@ namespace SpaceBattle
         [SerializeField] private float _shotInterval;
         private float _timer;
         private bool _isShoting = false;
+
+        public void SetProjectilesContainer(ProjectilesContainer projectilesContainer)
+        {
+            _projectilesContainer = projectilesContainer;
+        }
+            
         public void StartShot()
         {
             _isShoting = true;
@@ -48,6 +54,7 @@ namespace SpaceBattle
             projectile.SetPosition(shootPoint)
                 .StartMove(shotDir,_projectileSpeed)
                 .SetDamage(_projectileDamage)
+                .SetSender(gameObject)
                 .transform.Rotate(transform.forward*_tr.eulerAngles.z);
             Shoted.Invoke();
         }

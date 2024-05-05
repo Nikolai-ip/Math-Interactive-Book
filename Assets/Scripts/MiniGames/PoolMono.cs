@@ -1,8 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using MiniGames;
 using UnityEngine;
 
-public class PoolMono<T> where T: PoolObject
+public class PoolMono<T>:IEnumerable<T> where T: PoolObject
 {
     public T Prefab { get; }
     public bool AutoExpand { get; set; }
@@ -67,5 +68,15 @@ public class PoolMono<T> where T: PoolObject
             elements[i] = GetFreeElement();
         }
         return elements;
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        return _pool.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }

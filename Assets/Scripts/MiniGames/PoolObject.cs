@@ -5,7 +5,7 @@ namespace MiniGames
     public abstract class PoolObject:MonoBehaviour
     {
         public abstract void Init();
-        public abstract void Activated();
-        public abstract void Deactivated();
+        public virtual void Activated(){gameObject.SetActive(true);}
+        public virtual void Deactivated(){gameObject.SetActive(false);}
     }
 }

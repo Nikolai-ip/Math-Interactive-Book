@@ -10604,6 +10604,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f51c694fb1bd2f4596cb980a134d82d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GamePaused:
+    m_PersistentCalls:
+      m_Calls: []
+  GameStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &996708050
 Transform:
   m_ObjectHideFlags: 0
@@ -34825,6 +34831,10 @@ PrefabInstance:
     - target: {fileID: 1963963183880978388, guid: 9de0522811e0c174585073d718304fad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
+      propertyPath: _audioSourceLoop.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1963963183880978391, guid: 9de0522811e0c174585073d718304fad, type: 3}
       propertyPath: m_Name

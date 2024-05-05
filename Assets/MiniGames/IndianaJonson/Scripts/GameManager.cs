@@ -1,8 +1,9 @@
 ﻿using MiniGames.AudioSystem;
 using MiniGames.ServiceLocatorModule;
 using UnityEngine;
+using MiniGames;
 
-namespace MiniGames.IndianaJonson.Scripts
+namespace Indiana
 {
     public class GameManager:GameManagerBase
     {

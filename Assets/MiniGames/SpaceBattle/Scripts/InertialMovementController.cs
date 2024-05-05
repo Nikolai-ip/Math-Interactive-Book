@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SpaceBattle
 {
@@ -13,6 +14,7 @@ namespace SpaceBattle
         private float _decelerationStep;
         private float _accelerationStep; 
         private bool _engineIsWorking;
+        [SerializeField] private UnityEvent<bool> _engineWorked;
         private void Start()
         {
             _tr = GetComponent<Transform>();
@@ -22,12 +24,14 @@ namespace SpaceBattle
         {
             _accelerationStep = 0;
             _engineIsWorking = true;
+            _engineWorked.Invoke(true);
         }
 
         public void DisableEngine()
         {
             _decelerationStep = 0;
             _engineIsWorking = false;
+            _engineWorked.Invoke(false);
         }
         private void FixedUpdate()
         {

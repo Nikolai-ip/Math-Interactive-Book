@@ -12,6 +12,7 @@ namespace MiniGames
         protected Animator animator;
         protected new Collider2D collider;
         protected float originRotate;
+        protected GameObject sender;
 
         public Projectile StartMove(Vector2 dir, float speed)
         {
@@ -30,6 +31,11 @@ namespace MiniGames
             return this;
         }
 
+        public Projectile SetSender(GameObject sender)
+        {
+            this.sender = sender;
+            return this;
+        }
         protected void Update()
         {
             elapsedTime += Time.deltaTime;
@@ -42,6 +48,8 @@ namespace MiniGames
 
         protected void OnTriggerEnter2D(Collider2D other)
         {
+            if (sender!=null && other.gameObject==sender)
+                return;
             if (other.TryGetComponent(out IDamageable damageable))
             {
                 damageable.TakeDamage(gameObject,damage);
@@ -51,6 +59,7 @@ namespace MiniGames
 
         protected void StartDeactivated()
         {
+            sender = null;
             collider.enabled = false;
             rb.velocity = Vector2.zero;
             animator.SetTrigger("Explosion");
@@ -62,10 +71,6 @@ namespace MiniGames
             tr.eulerAngles = new Vector3(0, 0, originRotate);
             collider.enabled = true;
             elapsedTime = 0;
-        }
-        public override void Deactivated()
-        {
-            gameObject.SetActive(false);
         }
         public override void Init()
         {

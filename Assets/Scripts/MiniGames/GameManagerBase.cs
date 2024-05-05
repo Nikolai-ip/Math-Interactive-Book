@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using MiniGames.ServiceLocatorModule;
 using UnityEngine;
-using ILogger = MiniGames.LoggerModule.ILogger;
+using UnityEngine.SceneManagement;
 
 namespace MiniGames
 {
-    public abstract class GameManagerBase:InitializeableMono
+    public class GameManagerBase:InitializeableMono
     {
-        protected List<IService> _serviceMonoBehaviours;
+        protected static List<IService> serviceMonoBehaviours;
         public static GameManagerBase Instance { get; private set; }
         protected void RegisterServices()
         {
-            _serviceMonoBehaviours = FindObjectsOfType<MonoBehaviour>().OfType<IService>().ToList();
-            foreach (var service in _serviceMonoBehaviours)
+            serviceMonoBehaviours = FindObjectsOfType<MonoBehaviour>().OfType<IService>().ToList();
+            foreach (var service in serviceMonoBehaviours)
             {
                 ServiceLocator.Register(service);
             }
         }
         protected void UnRegisterServices()
         {
-            foreach (var service in _serviceMonoBehaviours)
+            foreach (var service in serviceMonoBehaviours)
             {
                 ServiceLocator.UnRegister(service);
             }
@@ -34,15 +34,22 @@ namespace MiniGames
 
         public override void Init()
         {
+            if (!IsFirstLaunchGame())
+                UnRegisterServices();
+            RegisterServices();
             if (Instance == null)
             {
                 Instance = this;
-                RegisterServices();
             }
-            else
+            else if (gameObject!=Instance.gameObject)
             {
                 Destroy(gameObject);
             }
+        }
+
+        public bool IsFirstLaunchGame()
+        {
+            return ServiceLocator.GetEnumerable().Count() == 0;
         }
     }
 }

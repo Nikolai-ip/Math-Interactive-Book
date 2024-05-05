@@ -9,6 +9,7 @@ namespace MiniGames.AudioSystem
     public class AudioService:InitializeableMono, IService
     {
         [SerializeField] private AudioClip[] _audioClips;
+        [SerializeField] private bool[] _audioSourceLoop;
         private Dictionary<string, AudioSource> _audioSourcesMap = new();
         public AudioService PlaySound(string soundName)
         {
@@ -18,6 +19,12 @@ namespace MiniGames.AudioSystem
             }
 
             return this;
+        }
+
+        private void OnValidate()
+        {
+            if (_audioSourceLoop.Length!= _audioClips.Length)
+                _audioSourceLoop = new bool[_audioClips.Length];
         }
 
         public void SetGlobalVolume(float volume)
@@ -88,14 +95,18 @@ namespace MiniGames.AudioSystem
 
         public override void Init()
         {
-            foreach (var audioClip in _audioClips)
+            for (var i = 0; i < _audioClips.Length; i++)
             {
-                var gameObject = Instantiate(new GameObject(audioClip.name), transform);
-                var audioSource = gameObject.AddComponent<AudioSource>();
+                var audioClip = _audioClips[i];
+                var name = audioClip.name;
+                var audioClipObject = new GameObject(name);
+                audioClipObject.transform.SetParent(transform);
+                var audioSource = audioClipObject.AddComponent<AudioSource>();
                 audioSource.clip = audioClip;
                 audioSource.playOnAwake = false;
+                audioSource.loop = _audioSourceLoop[i];
                 _audioSourcesMap.Add(audioClip.name, audioSource);
-            } 
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace MiniGames.ServiceLocatorModule
@@ -36,6 +37,14 @@ namespace MiniGames.ServiceLocatorModule
                 }
             }
             return default;
+        }
+        
+        public static IEnumerable<Type> GetEnumerable()
+        {
+            foreach (var kvp in _servicesMap)
+            {
+                yield return kvp.Key;
+            }
         }
     }
 }
