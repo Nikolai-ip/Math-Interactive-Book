@@ -42,7 +42,7 @@ public class Statue : MonoBehaviour
     {
         var rotationAngle = _tr.eulerAngles.z * Mathf.Deg2Rad;
         Vector2 shotDir = new Vector2((float)Math.Cos(rotationAngle), (float)Math.Sin(rotationAngle)).normalized;
-        var projectile =   _projectilesContainer.GetProjectile();
+        var projectile =  _projectilesContainer.GetProjectile();
         projectile.SetPosition(shootPoint)
             .StartMove(shotDir,_projectileSpeed)
             .SetDamage(_projectileDamage)

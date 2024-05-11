@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace MiniGames
@@ -5,6 +6,13 @@ namespace MiniGames
     public class HideObjectController : MonoBehaviour
     {
         [SerializeField] private GameObject[] _hideObjects;
+        [SerializeField] private bool _awakeHideObjects;
+
+        private void Start()
+        {
+            if (_awakeHideObjects)
+                HideObjects();
+        }
 
         public void HideObjects()
         {

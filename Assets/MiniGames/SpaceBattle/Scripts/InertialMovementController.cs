@@ -10,7 +10,7 @@ namespace SpaceBattle
         [SerializeField] private float _inertion;
         private Rigidbody2D _rb;
         private Transform _tr;
-        private Vector2 _velocity;
+        private float _velocity;
         private float _decelerationStep;
         private float _accelerationStep; 
         private bool _engineIsWorking;
@@ -38,14 +38,14 @@ namespace SpaceBattle
             if (!_engineIsWorking)
             {
                 _decelerationStep += Time.fixedDeltaTime * _inertion;
-                _velocity = Vector2.Lerp(_velocity, Vector2.zero, Mathf.Clamp(_decelerationStep, 0, 1));
-                if (Vector2.Distance(_velocity, Vector2.zero) < 0.1f)
-                    _velocity = Vector2.zero;
+                _velocity = Mathf.Lerp(_velocity, 0, Mathf.Clamp(_decelerationStep, 0, 1));
+                if (_velocity < 0.1f)
+                    _velocity = 0;
             }
             else
             {
                  _accelerationStep += Time.fixedDeltaTime * _forceAcceleration;
-                _velocity = Vector2.Lerp(_velocity, new Vector2(_maxForce,_maxForce), Mathf.Clamp(_accelerationStep, 0, 1));  
+                _velocity = Mathf.Lerp(_velocity, _maxForce ,Mathf.Clamp(_accelerationStep, 0, 1));  
 
             }
             _rb.velocity = _tr.up * _velocity;

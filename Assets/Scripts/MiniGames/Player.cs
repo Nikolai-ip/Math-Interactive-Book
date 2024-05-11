@@ -19,8 +19,9 @@ namespace MiniGames
         {
             if (damager == gameObject) return;
             health -= damage;
+            health = Mathf.Clamp(health, 0, maxHealth);
             HealthCnaged.Invoke(health/maxHealth);
-            if (health <= 0)
+            if (health == 0)
             {
                 Die();
             }

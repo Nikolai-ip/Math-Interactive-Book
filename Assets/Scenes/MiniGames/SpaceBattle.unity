@@ -1642,9 +1642,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
+      propertyPath: AudioClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
       propertyPath: _audioClips.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
+      propertyPath: AudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b812a8dbf68db1d4dbd7b49a1bfebb04, type: 3}
+    - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
+      propertyPath: AudioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4c5e5213a53bec94c8b82c7bc9683cec, type: 3}
     - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
       propertyPath: _audioClips.Array.data[0]
       value: 
@@ -1662,8 +1674,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 4c5e5213a53bec94c8b82c7bc9683cec, type: 3}
     - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
+      propertyPath: AudioSourceLoop.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
       propertyPath: _audioSourceLoop.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
+      propertyPath: AudioSourceLoop.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
       propertyPath: _audioSourceLoop.Array.data[0]
@@ -1971,6 +1991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hideObjects:
   - {fileID: 832241689}
+  _awakeHideObjects: 0
 --- !u!4 &1266179586
 Transform:
   m_ObjectHideFlags: 0
@@ -2326,6 +2347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hideObjects:
   - {fileID: 515377587}
+  _awakeHideObjects: 0
 --- !u!4 &1444637830
 Transform:
   m_ObjectHideFlags: 0

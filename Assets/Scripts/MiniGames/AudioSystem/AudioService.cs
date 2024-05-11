@@ -8,9 +8,9 @@ namespace MiniGames.AudioSystem
 {
     public class AudioService:InitializeableMono, IService
     {
-        [SerializeField] private AudioClip[] _audioClips;
-        [SerializeField] private bool[] _audioSourceLoop;
-        private Dictionary<string, AudioSource> _audioSourcesMap = new();
+        [SerializeField] protected AudioClip[] AudioClips;
+        [SerializeField] protected bool[] AudioSourceLoop;
+        protected Dictionary<string, AudioSource> AudioSourcesMap = new();
         public AudioService PlaySound(string soundName)
         {
             if (TryGetAudioSource(soundName, out AudioSource audioSource) && !audioSource.isPlaying)
@@ -21,15 +21,15 @@ namespace MiniGames.AudioSystem
             return this;
         }
 
-        private void OnValidate()
+        protected void OnValidate()
         {
-            if (_audioSourceLoop.Length!= _audioClips.Length)
-                _audioSourceLoop = new bool[_audioClips.Length];
+            if (AudioSourceLoop.Length!= AudioClips.Length)
+                AudioSourceLoop = new bool[AudioClips.Length];
         }
 
         public void SetGlobalVolume(float volume)
         {
-            foreach (var audioSource in _audioSourcesMap)
+            foreach (var audioSource in AudioSourcesMap)
             {
                 audioSource.Value.volume = volume;
             }
@@ -42,7 +42,7 @@ namespace MiniGames.AudioSystem
             }
             return this;
         }
-        public AudioService Stop(string soundName)
+        public AudioService StopPlaySound(string soundName)
         {
             if (TryGetAudioSource(soundName, out AudioSource audioSource))
             {
@@ -70,7 +70,7 @@ namespace MiniGames.AudioSystem
             return this;
         }
 
-        private IEnumerator SlowMuteSoundCoroutine(AudioSource audioSource, float time)
+        protected IEnumerator SlowMuteSoundCoroutine(AudioSource audioSource, float time)
         {
             float elapsedTime = 0;
             float originalVolume = audioSource.volume;
@@ -81,9 +81,9 @@ namespace MiniGames.AudioSystem
                 yield return null;
             }
         }
-        private bool TryGetAudioSource(string soundName, out AudioSource audioSource)
+        protected bool TryGetAudioSource(string soundName, out AudioSource audioSource)
         {
-            if (_audioSourcesMap.TryGetValue(soundName, out AudioSource audio))
+            if (AudioSourcesMap.TryGetValue(soundName, out AudioSource audio))
             {
                 audioSource = audio;
                 return true;
@@ -95,17 +95,17 @@ namespace MiniGames.AudioSystem
 
         public override void Init()
         {
-            for (var i = 0; i < _audioClips.Length; i++)
+            for (var i = 0; i < AudioClips.Length; i++)
             {
-                var audioClip = _audioClips[i];
+                var audioClip = AudioClips[i];
                 var name = audioClip.name;
                 var audioClipObject = new GameObject(name);
                 audioClipObject.transform.SetParent(transform);
                 var audioSource = audioClipObject.AddComponent<AudioSource>();
                 audioSource.clip = audioClip;
                 audioSource.playOnAwake = false;
-                audioSource.loop = _audioSourceLoop[i];
-                _audioSourcesMap.Add(audioClip.name, audioSource);
+                audioSource.loop = AudioSourceLoop[i];
+                AudioSourcesMap.Add(audioClip.name, audioSource);
             }
         }
     }

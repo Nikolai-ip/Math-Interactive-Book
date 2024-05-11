@@ -13,16 +13,24 @@ namespace MiniGames
         protected new Collider2D collider;
         protected float originRotate;
         protected GameObject sender;
-
+        [SerializeField] protected bool debug;
         public Projectile StartMove(Vector2 dir, float speed)
         {
             rb.velocity = dir * speed;
+            Debug.Log("StartVelocity " + rb.velocity);
             return this;
         }
 
+        public Projectile StartMoveByForce(Vector2 dir, float force)
+        {
+            rb.AddForce(dir * force, ForceMode2D.Impulse);
+            Debug.Log("StartForce " + dir * force);
+            return this;
+        } 
         public Projectile SetPosition(Vector2 position)
         {
             tr.position = position;
+            Debug.Log("StartPosition " + position);
             return this;
         }
         public Projectile SetDamage(float damage)
@@ -43,6 +51,14 @@ namespace MiniGames
             {
                 elapsedTime = 0;
                 StartDeactivated();
+            }
+
+            if (debug)
+            {
+                if (elapsedTime % 1 >0.99f)
+                {
+                    Debug.Log(elapsedTime + " " + rb.velocity);
+                }
             }
         }
 

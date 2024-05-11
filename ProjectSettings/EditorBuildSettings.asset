@@ -8,7 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MiniGames/IndianaGame.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MiniGames/SpaceBattle.unity
     guid: 5afd0bf0a36d2654a8a23b6e4e7139af
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/MedievelAngryBirds/MedivelGame1.unity
+    guid: 70b4325fc3794b645b880b0ace177c91
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/MedievelAngryBirds/MedivelGame2.unity
+    guid: 645d7296e5d2ffa4cabe00e67bc90f4b
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/MedievelAngryBirds/MedivelGame3.unity
+    guid: d77d16807a2ea8040b66c768278b08ab
   m_configObjects: {}

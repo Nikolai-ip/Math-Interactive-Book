@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SpaceBattle.Enemy
 {
-    public class Enemy:PoolObject, IDamageable
+    public class Enemy:PoolObject, IDamageable,IDieable
     {
         [SerializeField] private float _health;
         private float _initialHealth;

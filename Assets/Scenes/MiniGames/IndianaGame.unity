@@ -9966,6 +9966,9 @@ MonoBehaviour:
   _projectilePrefab: {fileID: 4244109114458643405, guid: 54bd2c51c918bac41a2f6941aee0d3b8, type: 3}
   _capacity: 40
   _autoExpand: 1
+  ProjectilesRunOut:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &768237920
 Transform:
   m_ObjectHideFlags: 0
@@ -34831,6 +34834,30 @@ PrefabInstance:
     - target: {fileID: 1963963183880978388, guid: 9de0522811e0c174585073d718304fad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
+      propertyPath: AudioClips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
+      propertyPath: AudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 70c74ee663d46994b909f986e21a8d81, type: 3}
+    - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
+      propertyPath: AudioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d59ed6ffb367a2b43b4983248f319de8, type: 3}
+    - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
+      propertyPath: AudioClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 488633099427650439e1c3ce0d4d77e8, type: 3}
+    - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
+      propertyPath: AudioSourceLoop.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
+      propertyPath: AudioSourceLoop.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1963963183880978389, guid: 9de0522811e0c174585073d718304fad, type: 3}
       propertyPath: _audioSourceLoop.Array.data[0]

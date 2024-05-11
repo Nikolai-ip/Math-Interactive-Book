@@ -8,7 +8,7 @@ namespace MiniGames
         [SerializeField] private string _separatedStr;
         [SerializeField] TextMeshProUGUI _textUI;
         
-        public void OnValueChanged(string val1, string val2)
+        public void OnValueChanged(object val1, object val2)
         {
             _textUI.text = val1 + _separatedStr + val2;
         }
