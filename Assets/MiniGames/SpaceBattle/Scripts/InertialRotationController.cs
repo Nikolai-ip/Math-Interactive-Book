@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace SpaceBattle
@@ -15,7 +16,8 @@ namespace SpaceBattle
         private float _accelerationStep; 
         private bool _isLeftRotate;
         private bool _isRightRotate;
-        
+        [SerializeField] private float _minRotateVelocity = 0.1f;
+        [SerializeField] private UnityEvent<object> _rotateDirChanged;
         private void Start()
         {
             _tr = GetComponent<Transform>();
@@ -23,6 +25,7 @@ namespace SpaceBattle
         private void FixedUpdate()
         {
              _tr.eulerAngles = new Vector3(0, 0, _tr.eulerAngles.z - _rotateVelocity);
+             _rotateDirChanged.Invoke(_tr.up);
         }
         public void RotateByFloat(float moveX)
         {
@@ -39,7 +42,7 @@ namespace SpaceBattle
                 _accelerationStep = 0;
             }
 
-            if (Mathf.Abs(_rotateVelocity) < 0.1f)
+            if (Mathf.Abs(_rotateVelocity) < _minRotateVelocity)
                 _rotateVelocity = 0;
         }
         

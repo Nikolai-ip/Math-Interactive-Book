@@ -10,11 +10,13 @@ namespace SpaceBattle
         [SerializeField] private float _inertion;
         private Rigidbody2D _rb;
         private Transform _tr;
-        private float _velocity;
+        [SerializeField] private float _velocity;
+        private float Velocity => _velocity;
         private float _decelerationStep;
         private float _accelerationStep; 
         private bool _engineIsWorking;
         [SerializeField] private UnityEvent<bool> _engineWorked;
+        [SerializeField] private UnityEvent<object> _veloctiyChanged;
         private void Start()
         {
             _tr = GetComponent<Transform>();
@@ -49,6 +51,7 @@ namespace SpaceBattle
 
             }
             _rb.velocity = _tr.up * _velocity;
+            _veloctiyChanged.Invoke(_velocity);
         }
     }
 }

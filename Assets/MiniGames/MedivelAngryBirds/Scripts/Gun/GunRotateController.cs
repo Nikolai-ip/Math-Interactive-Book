@@ -16,13 +16,15 @@ namespace MiniGames.MedivelAngryBirds.Scripts.Gun
         [SerializeField] private float _deltaAngleBetweenUpdates;
         [SerializeField] private float _deltaTargetY;
         [SerializeField] private float _sensivityCoef = 1;
+        [SerializeField] private float _targetAngle;
         public void Rotate(Vector2 target)
         {
             target = new Vector2(target.x, target.y - _deltaTargetY)* _sensivityCoef;
             Vector2 dir = (target - (Vector2)_gunTr.position).normalized;
+            Debug.Log(_gunTr.position);
             float targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            _targetAngle = targetAngle;
             targetAngle = Mathf.Clamp(targetAngle, _minRotateAngle, _maxRotateAngle);
-            
             if (Math.Abs(targetAngle - _previousAngle) < _deltaAngleBetweenUpdates)
             {
                 _step = 0;
