@@ -547,6 +547,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9115998089884986990}
     m_Modifications:
+    - target: {fileID: 3139629883719506992, guid: 486c7a089780cc2418f310e15c9f71a7, type: 3}
+      propertyPath: _amplitudeX
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139629883719506992, guid: 486c7a089780cc2418f310e15c9f71a7, type: 3}
+      propertyPath: _animationDuration
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139629883719506993, guid: 486c7a089780cc2418f310e15c9f71a7, type: 3}
+      propertyPath: m_Color.a
+      value: 0.38431373
+      objectReference: {fileID: 0}
     - target: {fileID: 3139629883719506994, guid: 486c7a089780cc2418f310e15c9f71a7, type: 3}
       propertyPath: m_Name
       value: Mouse

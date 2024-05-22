@@ -6,16 +6,17 @@ public class MouseAnimator : MonoBehaviour
 {
     private Transform _tr;
     private float _elapsedTime = 0;
+    private float _originLocalY;
     [Header("ShakeAnimation")] 
     [SerializeField] private float _amplitudeX;
     [SerializeField] private float _animationDuration;
     [SerializeField] private float _intervalAnimation;
     [SerializeField] private int _countOfShake;
     [SerializeField] private bool _startPlay;
-
     private void Start()
     {
         _tr = GetComponent<Transform>();
+        _originLocalY = _tr.localPosition.y;
         if (_startPlay)
             StartCoroutine(PlayShakeAnimation());
     }
@@ -28,6 +29,7 @@ public class MouseAnimator : MonoBehaviour
             _elapsedTime = 0;
             StartCoroutine(PlayShakeAnimation());
         }
+        _tr.localPosition = new Vector3(_tr.localPosition.x, _originLocalY);
     }
     public IEnumerator PlayShakeAnimation()
     {
@@ -38,6 +40,7 @@ public class MouseAnimator : MonoBehaviour
         {
             Vector3 targetPosition = i % 2 == 0 ? leftPosition : rightPosition;
             yield return MoveToPosition(targetPosition);
+            _tr.localPosition = new Vector3(_tr.localPosition.x, _originLocalY);
             yield return MoveToPosition(originalPosition);
         }
         _tr.position = originalPosition;
@@ -50,12 +53,13 @@ public class MouseAnimator : MonoBehaviour
 
         while (elapsedTime < _animationDuration)
         {
-            _tr.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / _animationDuration);
+            _tr.position = Vector3.Lerp(startPosition, new Vector3(targetPosition.x,_tr.position.y), elapsedTime / _animationDuration);
+            _tr.localPosition = new Vector3(_tr.localPosition.x, _originLocalY);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
         _tr.position = targetPosition;
+        
     }
     
     private void OnDrawGizmos()

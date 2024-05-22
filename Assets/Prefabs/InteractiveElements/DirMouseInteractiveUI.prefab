@@ -809,7 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.18039216, g: 0.14901961, b: 0.09411765, a: 1}
+  m_Color: {r: 0.18039216, g: 0.14901961, b: 0.09411765, a: 0.38431373}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -838,8 +838,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7cb659017300314c836cc28434a1f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amplitudeX: 0.2
-  _animationDuration: 0.05
+  _amplitudeX: 0.15
+  _animationDuration: 0.08
   _intervalAnimation: 3
   _countOfShake: 4
   _startPlay: 1
